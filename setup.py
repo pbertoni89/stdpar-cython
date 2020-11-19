@@ -30,6 +30,10 @@ class custom_build_ext(build_ext):
             # otherwise get passed on to nvc++, i.e.,
             # distutils.sysconfig.get_var("CFLAGS"). nvc++
             # does not support all of those "default" flags
+            #
+            # nordc: do not generate relocatable device code for separate compilation,
+            # and invoke the device linker before the host linker at the link step.
+            #
             compile_args = "-fPIC -stdpar -gpu=nordc -std=c++17"
             link_args = "-shared -stdpar"
             self.compiler.set_executable(
